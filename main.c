@@ -1,9 +1,15 @@
+/*Written by Fredrik Lundström and Michell Dib 2021 (c)*/
+
 #include <stdint.h>
 #include <pic32mx.h>
 #include "snake.h" 
 
+void user_isr(){
+	return;
+}
+
 int main(void){
-	    /*
+	/*
 	  This will set the peripheral bus clock to the same frequency
 	  as the sysclock. That means 80 MHz, when the microcontroller
 	  is running at 80 MHz. Changed 2017, as recommended by Axel.
@@ -44,9 +50,14 @@ int main(void){
 	SPI2CONSET = 0x20;
 	/* SPI2CON bit ON = 1; */
 	SPI2CONSET = 0x8000;
+
+	display_init(); //Initialize OLED display
 	
-	display_init();
-	display_string(0, "TEST");
-	display_update();
+	while(1){
+		display_start();
+	}
+	
 	return;
 }
+
+
