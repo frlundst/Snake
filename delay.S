@@ -29,10 +29,11 @@ hexasc:
 	addi $v0,$a0,0x30 
 	jr $ra
 	nop
+	
 
 delay:
 	PUSH $s3
-	li $s3, 47000
+	li $s3, 470000
 	li $t6, 0
 	li $t7, 0
 	j loop

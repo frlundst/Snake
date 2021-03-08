@@ -67,7 +67,8 @@ void display_init(void){
 	spi_send_recv(0xAF);
 }
 
-void display_string(int line, char *s) { //LAB
+/*(TAKEN FROM LAB) Display text*/
+void display_string(int line, char *s) { 
 	int i;
 	if(line < 0 || line >= 4)
 		return;
@@ -81,6 +82,7 @@ void display_string(int line, char *s) { //LAB
 			textbuffer[line][i] = ' ';
 }
 
+/*(TAKEN FROM LAB) Display text*/
 void display_update(void) { //LAB
 	int i, j, k;
 	int c;
@@ -125,6 +127,8 @@ void display_image(int x, const uint8_t *data) { //LAB
 	}
 }
 
+/*This function translates the display array to oled_display array. 
+It converts an x and y coordinate system into a readable array for the computer.*/
 void translateToImage() {
   int page, column, row, c, k;
   uint8_t powerOfTwo = 1;
@@ -147,19 +151,8 @@ void translateToImage() {
   }
 }
 
-void create_object(int xPos, int yPos, int width, int height) {
-  int row, column;
-
-  for (row = 0; row < 32; row++) {
-    for (column = 0; column < 128; column++) {
-      if (row >= yPos && row <= (yPos + height) && column >= xPos && column <= (xPos + width)) {
-        display[row][column] = 1;
-      }
-    }
-  }
-}
-
-void clear_display() {
+/*This function sets all the values in the display array and oled display array into 0s*/
+void clear_display() { 
   int row, column, i;
 
   for(row = 0; row < 32; row++) {
@@ -173,12 +166,12 @@ void clear_display() {
   }
 }
 
+/*This function calls all the necessary functions for the game to start*/
 void display_start(){
-	clear_display();
-	snake();
-	//create_object(64,16,1,1);
-	translateToImage();
-	display_image(0, oled_display);
+	clear_display(); //This clear the screen everytime it loops. It will clear the last frame
+	game(); //Call game
+	translateToImage(); //Translate 
+	display_image(0, oled_display); //And then display the frame
 }
 
 

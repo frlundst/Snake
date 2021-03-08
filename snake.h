@@ -21,8 +21,26 @@ void enable_interrupt(void);
 uint8_t display[32][128]; //Human readable pixel position and activation
 uint8_t oled_display[512]; //Computer readable pixel position and activation
 
+uint8_t snakeX[100];
+uint8_t snakeY[100];
+
+int main(void);
 void display_start();
 void clear_display();
 void translateToImage();
-void create_object(int xPos, int yPos, int width, int height);
-void snake();
+void game();
+void create_snake();
+void wall_collision();
+int score;
+
+typedef struct Snake //Object snake
+{
+    uint8_t *y; 
+    uint8_t *x;
+    int length;
+    char dir;
+    char next_dir;
+    uint8_t crash;
+} Snake;
+
+Snake snake; 

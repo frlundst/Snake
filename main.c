@@ -51,13 +51,44 @@ int main(void){
 	/* SPI2CON bit ON = 1; */
 	SPI2CONSET = 0x8000;
 
-	display_init(); //Initialize OLED display
+	display_init(); //Initialize OLED display 
+
+	score = 0; //Set score to one
+
+	snake.y = snakeY; //Set y to array
+	snake.x = snakeX; //Set x to array
+
+	snake.y[0] = 16; //Initialize snake
+	snake.x[0] = 64; //We make the snake big at first for demonstration purposes only
+	snake.y[1] = 16;
+	snake.x[1] = 65;
+	snake.y[2] = 16;
+	snake.x[2] = 66;
+	snake.y[3] = 16;
+	snake.x[3] = 67;
+	snake.y[4] = 16;
+	snake.x[4] = 68;
+	snake.y[5] = 16;
+	snake.x[5] = 69;
+	snake.y[6] = 16;
+	snake.x[6] = 70;
+	snake.y[7] = 16;
+	snake.x[7] = 71;
+	snake.y[8] = 16;
+	snake.x[8] = 72;
+	snake.y[9] = 16;
+	snake.x[9] = 73;
+
 	
+	snake.length = 10;
+	snake.dir = 'L'; 
+
 	while(1){
-		display_start();
+		display_start(); //Start display
 	}
-	
+
 	return;
 }
+
 
 

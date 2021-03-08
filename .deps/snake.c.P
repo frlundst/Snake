@@ -1,2 +1,0 @@
-snake.c.o: snake.c
-snake.c :
